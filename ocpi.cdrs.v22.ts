@@ -45,7 +45,7 @@ export const CdrLocation = z.object({
     country: z.string().length(3),
     coordinates: GeoLocation,
     evse_uid: z.string().max(36),
-    evse_id: z.string().max(48),
+    evse_id: z.string().max(48).regex(/^(([A-Z]{2}\*?[A-Z0-9]{3}\*?E[A-Z0-9\*]{1,30})|(\+?[0-9]{1,3}\*[0-9]{3}\*[0-9\*]{1,32}))$/),
     connector_id: z.string().max(36),
     connector_standard: ConnectorType,
     connector_format: ConnectorFormat,

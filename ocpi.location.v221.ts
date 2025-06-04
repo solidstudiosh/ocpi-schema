@@ -125,7 +125,7 @@ const ParkingRestriction = z.enum([
 
 export const Evse = z.object({
   uid: z.string().max(39),
-  evse_id: z.string().max(48).nullish(),
+  evse_id: z.string().max(48).regex(/^(([A-Z]{2}\*?[A-Z0-9]{3}\*?E[A-Z0-9\*]{1,30})|(\+?[0-9]{1,3}\*[0-9]{3}\*[0-9\*]{1,32}))$/).nullish(),
   status: EvseStatus,
   status_schedule: z.array(StatusSchedule).nullish(),
   capabilities: z.array(Capability).nullish(),
