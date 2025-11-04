@@ -206,7 +206,7 @@ const EnergySource = z.object({
 const EnvironmentalImpactCategory = z.enum(["NUCLEAR_WASTE", "CARBON_DIOXIDE"]);
 
 const EnvironmentalImpact = z.object({
-  source: EnvironmentalImpactCategory,
+  category: EnvironmentalImpactCategory,
   amount: z.number(),
 });
 
