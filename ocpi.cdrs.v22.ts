@@ -10,25 +10,20 @@ import { Tariff } from "./ocpi.tariff.v22";
 export const AuthMethod = z.enum(["AUTH_REQUEST", "COMMAND", "WHITELIST"]);
 
 const CdrDimensionType = z.enum([
-    "CURRENT",
     "ENERGY",
-    "ENERGY_EXPORT",
-    "ENERGY_IMPORT",
     "MAX_CURRENT",
     "MIN_CURRENT",
     "MAX_POWER",
     "MIN_POWER",
     "PARKING_TIME",
-    "POWER",
     "RESERVATION_TIME",
-    "STATE_OF_CHARGE",
     "TIME",
-  ]);
+]);
 
 export const CdrDimension = z.object({
     type: CdrDimensionType,
     volume: z.number(),
-  });
+});
 
 export const CdrToken = z.object({
     uid: z.string().max(36),

@@ -1,10 +1,37 @@
 import {z} from "zod";
-import { AuthMethod, CdrToken, ChargingPeriod } from "./ocpi.cdrs.v221";
+import { AuthMethod, CdrToken } from "./ocpi.cdrs.v221";
 import { Price } from "./ocpi.common.v221";
 
 
 export const SessionStatus = z.enum(["ACTIVE", "COMPLETED", "INVALID", "PENDING", "RESERVATION"]);
 export const ProfileType = z.enum(["CHEAP", "FAST", "GREEN", "REGULAR"]);
+
+const CdrDimensionType = z.enum([
+    "CURRENT",
+    "ENERGY",
+    "ENERGY_EXPORT",
+    "ENERGY_IMPORT",
+    "MAX_CURRENT",
+    "MIN_CURRENT",
+    "MAX_POWER",
+    "MIN_POWER",
+    "PARKING_TIME",
+    "POWER",
+    "RESERVATION_TIME",
+    "STATE_OF_CHARGE",
+    "TIME",
+]);
+
+export const CdrDimension = z.object({
+    type: CdrDimensionType,
+    volume: z.number(),
+});
+
+export const ChargingPeriod = z.object({
+    start_date_time: z.date(),
+    dimensions: z.array(CdrDimension).nonempty(),
+    tariff_id: z.string().max(36).nullish(),
+});
 
 export const Session = z.object({
     country_code: z.string().length(2),
