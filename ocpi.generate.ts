@@ -10,6 +10,10 @@ import {
   Tokens as TokensV221
 } from "./ocpi.tokens.v221";
 import {
+  Token as TokenV23,
+  Tokens as TokensV23
+} from "./ocpi.tokens.v23";
+import {
   Connector as ConnectorV22,
   Evse as EvseV22,
   Location as LocationV22,
@@ -22,6 +26,12 @@ import {
   Locations as LocationsV221
 } from "./ocpi.location.v221";
 import {
+  Connector as ConnectorV23,
+  Evse as EvseV23,
+  Location as LocationV23,
+  Locations as LocationsV23
+} from "./ocpi.location.v23";
+import {
   Session as SessionV22,
   Sessions as SessionsV22,
 } from "./ocpi.sessions.v22";
@@ -29,6 +39,10 @@ import {
   Session as SessionV221,
   Sessions as SessionsV221,
 } from "./ocpi.sessions.v221"
+import {
+  Session as SessionV23,
+  Sessions as SessionsV23,
+} from "./ocpi.sessions.v23"
 import {
   Cdr as CdrV22,
   Cdrs as CdrsV22,
@@ -38,6 +52,10 @@ import {
   Cdrs as CdrsV221,
 } from "./ocpi.cdrs.v221";
 import {
+  Cdr as CdrV23,
+  Cdrs as CdrsV23,
+} from "./ocpi.cdrs.v23";
+import {
   Tariff as TariffV22,
   Tariffs as TariffsV22,
 } from "./ocpi.tariff.v22";
@@ -45,6 +63,10 @@ import {
   Tariff as TariffV221,
   Tariffs as TariffsV221,
 } from "./ocpi.tariff.v221";
+import {
+  Tariff as TariffV23,
+  Tariffs as TariffsV23,
+} from "./ocpi.tariff.v23";
 import {
   OcpiEmpty,
   OcpiErrorResponse,
@@ -55,9 +77,11 @@ import { ZodTypeAny } from "zod";
 import { OcpiVersionDetails, OcpiVersions } from "./ocpi.version";
 import { OcpiVersionDetails as OcpiVersionDetailsV22, OcpiVersions as OcpiVersionsV22 } from "./ocpi.versions.v22";
 import { OcpiVersionDetails as OcpiVersionDetailsV221, OcpiVersions as OcpiVersionsV221 } from "./ocpi.versions.v221";
+import { OcpiVersionDetails as OcpiVersionDetailsV23, OcpiVersions as OcpiVersionsV23 } from "./ocpi.versions.v23";
 import { OcpiCredentials } from "./ocpi.credentials";
 import { OcpiCredentials as OcpiCredentialsV22 } from "./ocpi.credentials.v22";
 import { OcpiCredentials as OcpiCredentialsV221 } from "./ocpi.credentials.v221";
+import { OcpiCredentials as OcpiCredentialsV23 } from "./ocpi.credentials.v23";
 import { Cdr, Cdrs } from "./ocpi.cdr";
 import { Tariff, Tariffs } from "./ocpi.tariff";
 import { Token, Tokens } from "./ocpi.tokens";
@@ -86,6 +110,15 @@ import {
   StopSessionCommand as StopSessionCommandV221,
   UnlockConnectorCommand as UnlockConnectorCommandV221
 } from "./ocpi.commands.v221";
+import {
+  CommandResponse as CommandResponseV23,
+  CommandResult as CommandResultV23,
+  ReserveNowCommand as ReserveNowCommandV23,
+  CancelReservationCommand as CancelReservationCommandV23,
+  StartSessionCommand as StartSessionCommandV23,
+  StopSessionCommand as StopSessionCommandV23,
+  UnlockConnectorCommand as UnlockConnectorCommandV23
+} from "./ocpi.commands.v23";
 
 import { ocpiDeepPartial } from "./ocpi.utils";
 
@@ -104,12 +137,35 @@ import {
   ClearProfileResult as ClearProfileResultV221,
   SetChargingProfile as SetChargingProfileV221 
 } from "./ocpi.chargingprofiles.v221";
+import {
+  ActiveChargingProfile as ActiveChargingProfileV23,
+  ActiveChargingProfileResult as ActiveChargingProfileResultV23,
+  ChargingProfileResponse as ChargingProfileResponseV23,
+  ChargingProfileResult as ChargingProfileResultV23, 
+  ClearProfileResult as ClearProfileResultV23,
+  SetChargingProfile as SetChargingProfileV23 
+} from "./ocpi.chargingprofiles.v23";
 
 import {ClientInfo, ClientInfos} from "./ocpi.hubclientinfo.v22";
 import {
   ClientInfo as ClientInfoV221, 
   ClientInfos as ClientInfosV221
 } from "./ocpi.hubclientinfo.v221";
+import {
+  ClientInfo as ClientInfoV23,
+  ClientInfos as ClientInfosV23
+} from "./ocpi.hubclientinfo.v23";
+
+import {
+    Terminal as TerminalV23,
+    Terminals as TerminalsV23,
+    TerminalWithOptionalId as TerminalWithOptionalIdV23,
+} from "./ocpi.terminal.v23";
+import {
+    FinancialAdviceConfirmation as FinancialAdviceConfirmationV23 ,
+    FinancialAdviceConfirmations as FinancialAdviceConfirmationsV23
+} from "./ocpi.financialadviceconfirmation.v23";
+
 
 const OCPI_SCHEMA_DIR = ".ocpi-schema";
 
@@ -158,6 +214,17 @@ saveSchema(
   ocpiSuccessResponse(OcpiVersionDetailsV221),
 );
 
+/* Versions 2.3 */
+saveSchema("ocpi.2_3.versions", OcpiVersionsV23);
+saveSchema("ocpi.2_3.versions.response", ocpiSuccessResponse(OcpiVersionsV23));
+
+/* Version details 2.3 */
+saveSchema("ocpi.2_3.version_details", OcpiVersionDetailsV23);
+saveSchema(
+  "ocpi.2_3.version_details.response",
+  ocpiSuccessResponse(OcpiVersionDetailsV23),
+);
+
 /* Credentials */
 saveSchema("ocpi.2_1_1.credentials", OcpiCredentials);
 saveSchema(
@@ -177,6 +244,13 @@ saveSchema("ocpi.2_2_1.credentials", OcpiCredentialsV221);
 saveSchema(
   "ocpi.2_2_1.credentials.response",
   ocpiSuccessResponse(OcpiCredentialsV221),
+);
+
+/* Credentials 2.3 */
+saveSchema("ocpi.2_3.credentials", OcpiCredentialsV23);
+saveSchema(
+  "ocpi.2_3.credentials.response",
+  ocpiSuccessResponse(OcpiCredentialsV23),
 );
 
 /* Locations */
@@ -218,6 +292,19 @@ saveSchema("ocpi.2_2_1.connector", ConnectorV221);
 saveSchema("ocpi.2_2_1.connector.partial", ocpiDeepPartial(ConnectorV221));
 saveSchema("ocpi.2_2_1.connector.response", ocpiSuccessResponse(ConnectorV221));
 
+/* Locations 2.3 */
+saveSchema("ocpi.2_3.locations", LocationsV23);
+saveSchema("ocpi.2_3.locations.response", ocpiSuccessResponse(LocationsV23));
+saveSchema("ocpi.2_3.location", LocationV23);
+saveSchema("ocpi.2_3.location.partial", ocpiDeepPartial(LocationV23));
+saveSchema("ocpi.2_3.location.response", ocpiSuccessResponse(LocationV23));
+saveSchema("ocpi.2_3.evse", EvseV23);
+saveSchema("ocpi.2_3.evse.partial", ocpiDeepPartial(EvseV23));
+saveSchema("ocpi.2_3.evse.response", ocpiSuccessResponse(EvseV23));
+saveSchema("ocpi.2_3.connector", ConnectorV23);
+saveSchema("ocpi.2_3.connector.partial", ocpiDeepPartial(ConnectorV23));
+saveSchema("ocpi.2_3.connector.response", ocpiSuccessResponse(ConnectorV23));
+
 /* Sessions */
 saveSchema("ocpi.2_1_1.sessions", Sessions);
 saveSchema("ocpi.2_1_1.sessions.response", ocpiSuccessResponse(Sessions));
@@ -238,6 +325,13 @@ saveSchema("ocpi.2_2_1.sessions.response", ocpiSuccessResponse(SessionsV221));
 saveSchema("ocpi.2_2_1.session", SessionV221);
 saveSchema("ocpi.2_2_1.session.partial", ocpiDeepPartial(SessionV221));
 saveSchema("ocpi.2_2_1.session.response", ocpiSuccessResponse(SessionV221));
+
+/* Sessions 2.3 */
+saveSchema("ocpi.2_3.sessions", SessionsV23);
+saveSchema("ocpi.2_3.sessions.response", ocpiSuccessResponse(SessionsV23));
+saveSchema("ocpi.2_3.session", SessionV23);
+saveSchema("ocpi.2_3.session.partial", ocpiDeepPartial(SessionV23));
+saveSchema("ocpi.2_3.session.response", ocpiSuccessResponse(SessionV23));
 
 /* CDRs */
 saveSchema("ocpi.2_1_1.cdrs", Cdrs);
@@ -260,6 +354,13 @@ saveSchema("ocpi.2_2_1.cdr", CdrV221);
 saveSchema("ocpi.2_2_1.cdr.partial", ocpiDeepPartial(CdrV221));
 saveSchema("ocpi.2_2_1.cdr.response", ocpiSuccessResponse(CdrV221));
 
+/* CDRs 2.3 */
+saveSchema("ocpi.2_3.cdrs", CdrsV23);
+saveSchema("ocpi.2_3.cdrs.response", ocpiSuccessResponse(CdrsV23));
+saveSchema("ocpi.2_3.cdr", CdrV23);
+saveSchema("ocpi.2_3.cdr.partial", ocpiDeepPartial(CdrV23));
+saveSchema("ocpi.2_3.cdr.response", ocpiSuccessResponse(CdrV23));
+
 /* Charging Profiles 2.2 */
 saveSchema("ocpi.2_2.chargingprofiles", SetChargingProfile);
 saveSchema("ocpi.2_2.chargingprofiles.active", ActiveChargingProfile);
@@ -276,6 +377,14 @@ saveSchema("ocpi.2_2_1.chargingprofiles.active_charging_profile.result", ActiveC
 saveSchema("ocpi.2_2_1.chargingprofiles.charging_profile.result", ChargingProfileResultV221);
 saveSchema("ocpi.2_2_1.chargingprofiles.clear_profile.result", ClearProfileResultV221);
 
+/* Charging Profiles 2.3 */
+saveSchema("ocpi.2_3.chargingprofiles", SetChargingProfileV23);
+saveSchema("ocpi.2_3.chargingprofiles.active", ActiveChargingProfileV23);
+saveSchema("ocpi.2_3.chargingprofiles.response", ocpiSuccessResponse(ChargingProfileResponseV23));
+saveSchema("ocpi.2_3.chargingprofiles.active_charging_profile.result", ActiveChargingProfileResultV23);
+saveSchema("ocpi.2_3.chargingprofiles.charging_profile.result", ChargingProfileResultV23);
+saveSchema("ocpi.2_3.chargingprofiles.clear_profile.result", ClearProfileResultV23);
+
 /* Hub Client Info 2.2 */
 saveSchema("ocpi.2_2.hubclientinfo", ClientInfo);
 saveSchema("ocpi.2_2.hubclientinfo.response", ocpiSuccessResponse(ClientInfo));
@@ -285,6 +394,11 @@ saveSchema("ocpi.2_2.hubclientinfos", ocpiSuccessResponse(ClientInfos));
 saveSchema("ocpi.2_2_1.hubclientinfo", ClientInfoV221);
 saveSchema("ocpi.2_2_1.hubclientinfo.response", ocpiSuccessResponse(ClientInfoV221));
 saveSchema("ocpi.2_2_1.hubclientinfos", ocpiSuccessResponse(ClientInfosV221));
+
+/* Hub Client Info 2.3 */
+saveSchema("ocpi.2_3.hubclientinfo", ClientInfoV23);
+saveSchema("ocpi.2_3.hubclientinfo.response", ocpiSuccessResponse(ClientInfoV23));
+saveSchema("ocpi.2_3.hubclientinfos", ocpiSuccessResponse(ClientInfosV23));
 
 /* Tariffs */
 saveSchema("ocpi.2_1_1.tariffs", Tariffs);
@@ -307,6 +421,13 @@ saveSchema("ocpi.2_2_1.tariff", TariffV221);
 saveSchema("ocpi.2_2_1.tariff.partial", ocpiDeepPartial(TariffV221));
 saveSchema("ocpi.2_2_1.tariff.response", ocpiSuccessResponse(TariffV221));
 
+/* Tariffs 2.3 */
+saveSchema("ocpi.2_3.tariffs", TariffsV23);
+saveSchema("ocpi.2_3.tariffs.response", ocpiSuccessResponse(TariffsV23));
+saveSchema("ocpi.2_3.tariff", TariffV23);
+saveSchema("ocpi.2_3.tariff.partial", ocpiDeepPartial(TariffV23));
+saveSchema("ocpi.2_3.tariff.response", ocpiSuccessResponse(TariffV23));
+
 /* Tokens */
 saveSchema("ocpi.2_1_1.tokens", Tokens);
 saveSchema("ocpi.2_1_1.tokens.response", ocpiSuccessResponse(Tokens));
@@ -321,12 +442,20 @@ saveSchema("ocpi.2_2.token", TokenV22);
 saveSchema("ocpi.2_2.token.partial", ocpiDeepPartial(TokenV22));
 saveSchema("ocpi.2_2.token.response", ocpiSuccessResponse(TokenV22));
 
-/* Tokens 2.2 */
+/* Tokens 2.2.1 */
 saveSchema("ocpi.2_2_1.tokens", TokensV221);
 saveSchema("ocpi.2_2_1.tokens.response", ocpiSuccessResponse(TokensV221));
 saveSchema("ocpi.2_2_1.token", TokenV221);
 saveSchema("ocpi.2_2_1.token.partial", ocpiDeepPartial(TokenV221));
 saveSchema("ocpi.2_2_1.token.response", ocpiSuccessResponse(TokenV221));
+
+
+/* Tokens 2.3 */
+saveSchema("ocpi.2_3.tokens", TokensV23);
+saveSchema("ocpi.2_3.tokens.response", ocpiSuccessResponse(TokensV23));
+saveSchema("ocpi.2_3.token", TokenV23);
+saveSchema("ocpi.2_3.token.partial", ocpiDeepPartial(TokenV23));
+saveSchema("ocpi.2_3.token.response", ocpiSuccessResponse(TokenV23));
 
 /* Commands */
 saveSchema("ocpi.2_1_1.commands.reserve_now.request", ReserveNowCommand);
@@ -358,6 +487,31 @@ saveSchema("ocpi.2_2_1.commands.stop_session.request", StopSessionCommandV221);
 saveSchema("ocpi.2_2_1.commands.unlock_connector.request", UnlockConnectorCommandV221);
 saveSchema("ocpi.2_2_1.commands.response", ocpiSuccessResponse(CommandResponseV221));
 saveSchema("ocpi.2_2_1.commands.result", CommandResultV221);
+
+/* Commands 2.3 */
+saveSchema("ocpi.2_3.commands.reserve_now.request", ReserveNowCommandV23);
+saveSchema("ocpi.2_3.commands.cancel_reservation.request", CancelReservationCommandV23);
+saveSchema("ocpi.2_3.commands.start_session.request", StartSessionCommandV23);
+saveSchema("ocpi.2_3.commands.stop_session.request", StopSessionCommandV23);
+saveSchema("ocpi.2_3.commands.unlock_connector.request", UnlockConnectorCommandV23);
+saveSchema("ocpi.2_3.commands.response", ocpiSuccessResponse(CommandResponseV23));
+saveSchema("ocpi.2_3.commands.result", CommandResultV23);
+
+/* Payments 2.3 */
+saveSchema("ocpi.2_3.payments.terminals", TerminalsV23);
+saveSchema("ocpi.2_3.payments.terminals.response", ocpiSuccessResponse(TerminalsV23));
+saveSchema("ocpi.2_3.payments.terminal", TerminalV23);
+saveSchema("ocpi.2_3.payments.terminal_with_optional_id", TerminalWithOptionalIdV23);
+saveSchema("ocpi.2_3.payments.terminal.partial", ocpiDeepPartial(TerminalV23));
+saveSchema("ocpi.2_3.payments.terminal.response", ocpiSuccessResponse(TerminalV23));
+
+saveSchema("ocpi.2_3.payments.financial_advice_confirmations", FinancialAdviceConfirmationsV23);
+saveSchema("ocpi.2_3.payments.financial_advice_confirmations.response", ocpiSuccessResponse(FinancialAdviceConfirmationsV23));
+saveSchema("ocpi.2_3.payments.financial_advice_confirmation", FinancialAdviceConfirmationV23);
+saveSchema("ocpi.2_3.payments.financial_advice_confirmation.partial", ocpiDeepPartial(FinancialAdviceConfirmationV23));
+saveSchema("ocpi.2_3.payments.financial_advice_confirmation.response", ocpiSuccessResponse(FinancialAdviceConfirmationV23));
+
+
 
 /* Errors */
 saveSchema("ocpi.error", OcpiErrorResponse);
