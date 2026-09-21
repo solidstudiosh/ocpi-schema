@@ -58,6 +58,8 @@ import { OcpiVersionDetails as OcpiVersionDetailsV221, OcpiVersions as OcpiVersi
 import { OcpiCredentials } from "./ocpi.credentials";
 import { OcpiCredentials as OcpiCredentialsV22 } from "./ocpi.credentials.v22";
 import { OcpiCredentials as OcpiCredentialsV221 } from "./ocpi.credentials.v221";
+import { OcpiVersionDetails as OcpiVersionDetailsV23, OcpiVersions as OcpiVersionsV23 } from "./ocpi.versions.v23";
+import { OcpiCredentials as OcpiCredentialsV23 } from "./ocpi.credentials.v23";
 import { Cdr, Cdrs } from "./ocpi.cdr";
 import { Tariff, Tariffs } from "./ocpi.tariff";
 import { Token, Tokens } from "./ocpi.tokens";
@@ -158,6 +160,17 @@ saveSchema(
   ocpiSuccessResponse(OcpiVersionDetailsV221),
 );
 
+/* Versions 2.3.0 */
+saveSchema("ocpi.2_3.versions", OcpiVersionsV23);
+saveSchema("ocpi.2_3.versions.response", ocpiSuccessResponse(OcpiVersionsV23));
+
+/* Version details 2.3.0 */
+saveSchema("ocpi.2_3.version_details", OcpiVersionDetailsV23);
+saveSchema(
+  "ocpi.2_3.version_details.response",
+  ocpiSuccessResponse(OcpiVersionDetailsV23),
+);
+
 /* Credentials */
 saveSchema("ocpi.2_1_1.credentials", OcpiCredentials);
 saveSchema(
@@ -177,6 +190,13 @@ saveSchema("ocpi.2_2_1.credentials", OcpiCredentialsV221);
 saveSchema(
   "ocpi.2_2_1.credentials.response",
   ocpiSuccessResponse(OcpiCredentialsV221),
+);
+
+/* Credentials 2.3.0 */
+saveSchema("ocpi.2_3.credentials", OcpiCredentialsV23);
+saveSchema(
+  "ocpi.2_3.credentials.response",
+  ocpiSuccessResponse(OcpiCredentialsV23),
 );
 
 /* Locations */
