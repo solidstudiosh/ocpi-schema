@@ -27,3 +27,23 @@ export const DisplayText = z.object({
   language: z.string().length(2),
   text: z.string().max(512),
 });
+
+export const ImageCategory = z.union([
+  z.enum(["CHARGER", "ENTRANCE", "LOCATION", "NETWORK", "OPERATOR", "OTHER", "OWNER"]),
+  z.string(),
+]);
+
+export const Image = z.object({
+  url: z.string().url(),
+  thumbnail: z.string().url().nullish(),
+  category: ImageCategory,
+  type: z.string().max(4),
+  width: z.number().int().max(99999).nullish(),
+  height: z.number().int().max(99999).nullish(),
+});
+
+export const BusinessDetails = z.object({
+  name: z.string().max(100),
+  website: z.string().url().nullish(),
+  logo: Image.nullish(),
+});

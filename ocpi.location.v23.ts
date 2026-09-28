@@ -1,6 +1,5 @@
 import { z } from "zod";
-import { BusinessDetails, DisplayText, Image } from "./ocpi.common";
-import { TokenType } from "./ocpi.common.v23";
+import { BusinessDetails, DisplayText, Image, TokenType } from "./ocpi.common.v23";
 
 // 2.3.0 makes several Locations enums open: an unrecognised value must not fail validation
 const open = <T extends [string, ...string[]]>(values: T) =>
@@ -88,8 +87,12 @@ export const VehicleType = open([
 
 export const ParkingDirection = z.enum(["PARALLEL", "PERPENDICULAR", "ANGLE"]);
 
-// defined by Locations in 2.3.0 but referenced only by the Bookings package
 export const EVSEPosition = z.enum(["LEFT", "RIGHT", "CENTER"]);
+
+export const EVSEParking = z.object({
+  parking_id: z.string().max(36),
+  evse_position: EVSEPosition.nullish(),
+});
 
 export const Parking = z.object({
   id: z.string().max(36),
@@ -103,6 +106,7 @@ export const Parking = z.object({
   parking_space_width: z.number().nullish(),
   dangerous_goods_allowed: z.boolean().nullish(),
   direction: ParkingDirection.nullish(),
+  drive_through: z.boolean().nullish(),
   restricted_to_type: z.boolean(),
   reservation_required: z.boolean(),
   time_limit: z.number().nullish(),
@@ -126,7 +130,7 @@ export const Evse = z.object({
   physical_reference: z.string().max(16).nullish(),
   directions: z.array(DisplayText).nullish(),
   parking_restrictions: z.array(ParkingRestriction).nullish(),
-  parking: Parking.nullish(),
+  parking: z.array(EVSEParking).nullish(),
   images: z.array(Image).nullish(),
   accepted_service_providers: z.array(z.string().max(50)).nullish(),
   last_updated: z.date(),
@@ -177,7 +181,7 @@ const EnergySource = z.object({
   percentage: z.number().min(0).max(100),
 });
 
-const EnvironmentalImpactCategory = z.enum(["NUCLEAR_WASTE", "CARBON_DIOXIDE"]);
+const EnvironmentalImpactCategory = open(["NUCLEAR_WASTE", "CARBON_DIOXIDE"]);
 
 const EnvironmentalImpact = z.object({
   source: EnvironmentalImpactCategory,
@@ -217,6 +221,7 @@ export const Location = z.object({
   related_locations: z.array(AdditionalGeoLocation).nullish(),
   parking_type: ParkingType.nullish(),
   evses: z.array(Evse).nullish(),
+  parking_places: z.array(Parking).nullish(),
   directions: z.array(DisplayText).nullish(),
   operator: BusinessDetails.nullish(),
   suboperator: BusinessDetails.nullish(),
