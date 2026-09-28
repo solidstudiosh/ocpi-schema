@@ -104,7 +104,7 @@ const ParkingRestriction = z.enum([
 ]);
 
 export const Evse = z.object({
-  uid: z.string().max(39),
+  uid: z.string().max(36),
   evse_id: z.string().max(48).regex(/^(([A-Z]{2}\*?[A-Z0-9]{3}\*?E[A-Z0-9\*]{1,30})|(\+?[0-9]{1,3}\*[0-9]{3}\*[0-9\*]{1,32}))$/).nullish(),
   status: EvseStatus,
   status_schedule: z.array(StatusSchedule).nullish(),
@@ -206,7 +206,7 @@ const EnergySource = z.object({
 const EnvironmentalImpactCategory = z.enum(["NUCLEAR_WASTE", "CARBON_DIOXIDE"]);
 
 const EnvironmentalImpact = z.object({
-  source: EnvironmentalImpactCategory,
+  category: EnvironmentalImpactCategory,
   amount: z.number(),
 });
 
