@@ -60,6 +60,25 @@ import { OcpiCredentials as OcpiCredentialsV22 } from "./ocpi.credentials.v22";
 import { OcpiCredentials as OcpiCredentialsV221 } from "./ocpi.credentials.v221";
 import { OcpiVersionDetails as OcpiVersionDetailsV23, OcpiVersions as OcpiVersionsV23 } from "./ocpi.versions.v23";
 import { OcpiCredentials as OcpiCredentialsV23 } from "./ocpi.credentials.v23";
+import {
+  Connector as ConnectorV23,
+  Evse as EvseV23,
+  Location as LocationV23,
+  Locations as LocationsV23,
+} from "./ocpi.location.v23";
+import { Session as SessionV23, Sessions as SessionsV23 } from "./ocpi.sessions.v23";
+import { Cdr as CdrV23, Cdrs as CdrsV23 } from "./ocpi.cdrs.v23";
+import { Tariff as TariffV23, Tariffs as TariffsV23 } from "./ocpi.tariff.v23";
+import { Token as TokenV23, Tokens as TokensV23 } from "./ocpi.tokens.v23";
+import {
+  CancelReservationCommand as CancelReservationCommandV23,
+  CommandResponse as CommandResponseV23,
+  CommandResult as CommandResultV23,
+  ReserveNowCommand as ReserveNowCommandV23,
+  StartSessionCommand as StartSessionCommandV23,
+  StopSessionCommand as StopSessionCommandV23,
+  UnlockConnectorCommand as UnlockConnectorCommandV23,
+} from "./ocpi.commands.v23";
 import { Cdr, Cdrs } from "./ocpi.cdr";
 import { Tariff, Tariffs } from "./ocpi.tariff";
 import { Token, Tokens } from "./ocpi.tokens";
@@ -381,3 +400,53 @@ saveSchema("ocpi.2_2_1.commands.result", CommandResultV221);
 
 /* Errors */
 saveSchema("ocpi.error", OcpiErrorResponse);
+
+/* Locations 2.3.0 */
+saveSchema("ocpi.2_3.locations", LocationsV23);
+saveSchema("ocpi.2_3.locations.response", ocpiSuccessResponse(LocationsV23));
+saveSchema("ocpi.2_3.location", LocationV23);
+saveSchema("ocpi.2_3.location.partial", ocpiDeepPartial(LocationV23));
+saveSchema("ocpi.2_3.location.response", ocpiSuccessResponse(LocationV23));
+saveSchema("ocpi.2_3.evse", EvseV23);
+saveSchema("ocpi.2_3.evse.partial", ocpiDeepPartial(EvseV23));
+saveSchema("ocpi.2_3.evse.response", ocpiSuccessResponse(EvseV23));
+saveSchema("ocpi.2_3.connector", ConnectorV23);
+saveSchema("ocpi.2_3.connector.partial", ocpiDeepPartial(ConnectorV23));
+saveSchema("ocpi.2_3.connector.response", ocpiSuccessResponse(ConnectorV23));
+
+/* Sessions 2.3.0 */
+saveSchema("ocpi.2_3.sessions", SessionsV23);
+saveSchema("ocpi.2_3.sessions.response", ocpiSuccessResponse(SessionsV23));
+saveSchema("ocpi.2_3.session", SessionV23);
+saveSchema("ocpi.2_3.session.partial", ocpiDeepPartial(SessionV23));
+saveSchema("ocpi.2_3.session.response", ocpiSuccessResponse(SessionV23));
+
+/* CDRs 2.3.0 */
+saveSchema("ocpi.2_3.cdrs", CdrsV23);
+saveSchema("ocpi.2_3.cdrs.response", ocpiSuccessResponse(CdrsV23));
+saveSchema("ocpi.2_3.cdr", CdrV23);
+saveSchema("ocpi.2_3.cdr.partial", ocpiDeepPartial(CdrV23));
+saveSchema("ocpi.2_3.cdr.response", ocpiSuccessResponse(CdrV23));
+
+/* Tariffs 2.3.0 */
+saveSchema("ocpi.2_3.tariffs", TariffsV23);
+saveSchema("ocpi.2_3.tariffs.response", ocpiSuccessResponse(TariffsV23));
+saveSchema("ocpi.2_3.tariff", TariffV23);
+saveSchema("ocpi.2_3.tariff.partial", ocpiDeepPartial(TariffV23));
+saveSchema("ocpi.2_3.tariff.response", ocpiSuccessResponse(TariffV23));
+
+/* Tokens 2.3.0 */
+saveSchema("ocpi.2_3.tokens", TokensV23);
+saveSchema("ocpi.2_3.tokens.response", ocpiSuccessResponse(TokensV23));
+saveSchema("ocpi.2_3.token", TokenV23);
+saveSchema("ocpi.2_3.token.partial", ocpiDeepPartial(TokenV23));
+saveSchema("ocpi.2_3.token.response", ocpiSuccessResponse(TokenV23));
+
+/* Commands 2.3.0 */
+saveSchema("ocpi.2_3.commands.reserve_now.request", ReserveNowCommandV23);
+saveSchema("ocpi.2_3.commands.cancel_reservation.request", CancelReservationCommandV23);
+saveSchema("ocpi.2_3.commands.start_session.request", StartSessionCommandV23);
+saveSchema("ocpi.2_3.commands.stop_session.request", StopSessionCommandV23);
+saveSchema("ocpi.2_3.commands.unlock_connector.request", UnlockConnectorCommandV23);
+saveSchema("ocpi.2_3.commands.response", ocpiSuccessResponse(CommandResponseV23));
+saveSchema("ocpi.2_3.commands.result", CommandResultV23);
