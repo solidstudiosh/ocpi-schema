@@ -1,0 +1,15 @@
+{
+  "country_code": "DE",
+  "party_id": "MSP",
+  "request_id": "REQ-0001",
+  "booking_option": { "evse_uid": "EVSE-1" },
+  "location_id": "LOC-1",
+  "booking_location_id": "BL-EVSE-1",
+  "tokens": [
+    { "country_code": "DE", "party_id": "MSP", "uid": "04A1B2C3D4", "type": "RFID", "contract_id": "DE-MSP-C12345678-9" }
+  ],
+  "access_information": [{ "method": "LICENSE_PLATE", "value": "AB123CD" }],
+  "period": { "start_date_time": "2027-01-11T10:00:00Z", "end_date_time": "2027-01-11T11:00:00Z" },
+  "authorization_reference": "AUTH-0001",
+  "power_required": 350
+}

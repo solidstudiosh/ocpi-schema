@@ -12,6 +12,8 @@ const CdrDimensionType = z.enum([
   "CURRENT", "ENERGY", "ENERGY_EXPORT", "ENERGY_IMPORT", "MAX_CURRENT", "MIN_CURRENT",
   "MAX_POWER", "MIN_POWER", "PARKING_TIME", "POWER", "RESERVATION_TIME",
   "STATE_OF_CHARGE", "TIME",
+  // Bookings 1.1 redefines RESERVATION_TIME as reserved time and moves "reserved and not yet in use" here
+  "RESERVATION_EXPIRES", "RESERVATION_OVERTIME",
 ]);
 
 export const CdrDimension = z.object({
@@ -96,6 +98,7 @@ export const Cdr = z.object({
   credit: z.boolean().nullish(),
   credit_reference_id: z.string().max(39).nullish(),
   home_charging_compensation: z.boolean().nullish(),
+  booking_id: z.string().max(36).nullish(),
   last_updated: z.date(),
 });
 

@@ -1,0 +1,14 @@
+{
+  "country_code": "PL",
+  "party_id": "CPO",
+  "id": "BOOKED-1",
+  "currency": "EUR",
+  "type": "REGULAR",
+  "tax_included": "NO",
+  "elements": [
+    { "price_components": [{ "type": "FLAT", "price": 5, "step_size": 1 }], "restrictions": { "booking": "BOOKING" } },
+    { "price_components": [{ "type": "FLAT", "price": 15, "step_size": 1 }], "restrictions": { "booking": "BOOKING_EXPIRES" } },
+    { "price_components": [{ "type": "ENERGY", "price": 0.45, "step_size": 1 }] }
+  ],
+  "last_updated": "2027-01-10T08:00:01Z"
+}

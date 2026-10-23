@@ -79,6 +79,14 @@ import {
   StopSessionCommand as StopSessionCommandV23,
   UnlockConnectorCommand as UnlockConnectorCommandV23,
 } from "./ocpi.commands.v23";
+import {
+  Booking as BookingV23,
+  BookingLocation as BookingLocationV23,
+  BookingLocations as BookingLocationsV23,
+  BookingRequest as BookingRequestV23,
+  Bookings as BookingsV23,
+  Calendar as CalendarV23,
+} from "./ocpi.booking.v23";
 import { Cdr, Cdrs } from "./ocpi.cdr";
 import { Tariff, Tariffs } from "./ocpi.tariff";
 import { Token, Tokens } from "./ocpi.tokens";
@@ -450,3 +458,19 @@ saveSchema("ocpi.2_3.commands.stop_session.request", StopSessionCommandV23);
 saveSchema("ocpi.2_3.commands.unlock_connector.request", UnlockConnectorCommandV23);
 saveSchema("ocpi.2_3.commands.response", ocpiSuccessResponse(CommandResponseV23));
 saveSchema("ocpi.2_3.commands.result", CommandResultV23);
+
+/* Bookings 1.1 on 2.3.0 */
+saveSchema("ocpi.2_3.bookings", BookingsV23);
+saveSchema("ocpi.2_3.bookings.response", ocpiSuccessResponse(BookingsV23));
+saveSchema("ocpi.2_3.booking", BookingV23);
+saveSchema("ocpi.2_3.booking.partial", ocpiDeepPartial(BookingV23));
+saveSchema("ocpi.2_3.booking.response", ocpiSuccessResponse(BookingV23));
+saveSchema("ocpi.2_3.booking_request", BookingRequestV23);
+saveSchema("ocpi.2_3.booking_locations", BookingLocationsV23);
+saveSchema("ocpi.2_3.booking_locations.response", ocpiSuccessResponse(BookingLocationsV23));
+saveSchema("ocpi.2_3.booking_location", BookingLocationV23);
+saveSchema("ocpi.2_3.booking_location.partial", ocpiDeepPartial(BookingLocationV23));
+saveSchema("ocpi.2_3.booking_location.response", ocpiSuccessResponse(BookingLocationV23));
+saveSchema("ocpi.2_3.calendar", CalendarV23);
+saveSchema("ocpi.2_3.calendar.partial", ocpiDeepPartial(CalendarV23));
+saveSchema("ocpi.2_3.calendar.response", ocpiSuccessResponse(CalendarV23));

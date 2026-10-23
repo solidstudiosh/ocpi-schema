@@ -21,6 +21,8 @@ export const OcpiModuleId = z.union([
     "sessions",
     "tariffs",
     "tokens",
+    // declared by the Bookings 1.1 chapter although the ModuleID table does not list it
+    "Booking",
   ]),
   z.string(),
 ]);
