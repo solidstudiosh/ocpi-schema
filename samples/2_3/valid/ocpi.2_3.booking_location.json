@@ -7,7 +7,7 @@
     "evse_uid": "EVSE-1",
     "parking_id": "P-1",
     "evse_position": ["LEFT"],
-    "vehicle_types": ["HEAVY_DUTY_TRUCK"],
+    "vehicle_types": ["SEMI_TRACTOR"],
     "connector_types": ["IEC_62196_T2_COMBO"],
     "power_types": ["DC"],
     "max_vehicle_weight": 44000,
