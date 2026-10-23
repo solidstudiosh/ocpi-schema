@@ -1,0 +1,43 @@
+{
+  "country_code": "PL",
+  "party_id": "CPO",
+  "id": "BL-EVSE-1",
+  "location_id": "LOC-1",
+  "booking_option": {
+    "evse_uid": "EVSE-1",
+    "parking_id": "P-1",
+    "evse_position": ["LEFT"],
+    "vehicle_types": ["HEAVY_DUTY_TRUCK"],
+    "connector_types": ["IEC_62196_T2_COMBO"],
+    "power_types": ["DC"],
+    "max_vehicle_weight": 44000,
+    "max_vehicle_height": 400,
+    "max_vehicle_length": 1875,
+    "max_vehicle_width": 255,
+    "min_parking_space_length": 2000,
+    "min_parking_space_width": 400,
+    "dangerous_goods_allowed": false,
+    "drive_through": true,
+    "refrigeration_outlet": false
+  },
+  "policy": { "reservation_required": false },
+  "tariff_ids": ["BOOKED-1"],
+  "booking_terms": {
+    "supported_access_methods": ["TOKEN"],
+    "change_until_minutes": 0,
+    "cancel_until_minutes": 0
+  },
+  "calendars": [
+    {
+      "id": "CAL-EVSE-1",
+      "begin_from": "2027-01-11T06:00:00Z",
+      "end_before": "2027-01-11T22:00:00Z",
+      "timeslot_increment": 30,
+      "available_timeslots": [
+        { "start_date_time": "2027-01-11T06:00:00Z", "end_date_time": "2027-01-11T10:00:00Z", "max_power": 350000 }
+      ],
+      "last_updated": "2027-01-10T08:00:01Z"
+    }
+  ],
+  "last_updated": "2027-01-10T08:00:01Z"
+}

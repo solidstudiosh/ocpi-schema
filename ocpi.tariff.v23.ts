@@ -18,6 +18,10 @@ const DayOfWeek = z.enum([
 
 const ReservationRestrictionType = z.enum(["RESERVATION", "RESERVATION_EXPIRES"]);
 
+const BookingRestrictionType = z.enum([
+  "BOOKING", "BOOKING_EXPIRES", "BOOKING_CANCELLATION_FEES", "BOOKING_OVERTIME",
+]);
+
 const TariffRestrictions = z.object({
   start_time: z.string().length(5).regex(/([0-1][0-9]|2[0-3]):[0-5][0-9]/).nullish(),
   end_time: z.string().length(5).regex(/([0-1][0-9]|2[0-3]):[0-5][0-9]/).nullish(),
@@ -33,6 +37,7 @@ const TariffRestrictions = z.object({
   max_duration: z.number().int().nonnegative().nullish(),
   day_of_week: z.array(DayOfWeek).nullish(),
   reservation: ReservationRestrictionType.nullish(),
+  booking: BookingRestrictionType.nullish(),
 });
 
 const TariffElement = z.object({
